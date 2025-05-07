@@ -7,24 +7,28 @@ export const ProductCategories = () => {
       title: "Laptops",
       description: "Desempenho superior para todas as suas necessidades",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08499677.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08143001.png",
       link: "#"
     },
     {
       title: "Desktops",
       description: "Poder e versatilidade para seu espaço de trabalho",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08595863.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08250534.png",
       link: "#"
     },
     {
       title: "Impressoras",
       description: "Qualidade profissional para documentos e fotos",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06612696.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06244969.png",
       link: "#"
     },
     {
       title: "Monitores",
       description: "Visualização perfeita para qualquer atividade",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08002787.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c07021025.png",
       link: "#"
     }
   ];
@@ -41,7 +45,16 @@ export const ProductCategories = () => {
             >
               <div className="p-6 flex flex-col h-full">
                 <div className="flex-1">
-                  <img src={category.image} alt={category.title} className="mx-auto h-40 object-contain mb-4" />
+                  <img 
+                    src={category.image} 
+                    alt={category.title} 
+                    className="mx-auto h-40 object-contain mb-4"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = category.fallbackImage;
+                      e.currentTarget.onerror = null;
+                    }}
+                  />
                   <h3 className="font-bold text-xl mb-2">{category.title}</h3>
                   <p className="text-gray-600 mb-4">{category.description}</p>
                 </div>

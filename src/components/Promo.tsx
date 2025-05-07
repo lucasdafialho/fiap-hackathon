@@ -1,7 +1,10 @@
 
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export const Promo = () => {
+  const [imageError, setImageError] = useState(false);
+  
   return (
     <section className="bg-hp-dark-blue text-white py-12">
       <div className="hp-container">
@@ -15,9 +18,18 @@ export const Promo = () => {
           </div>
           <div className="md:w-2/5 flex justify-center">
             <img 
-              src="https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08193583.png" 
+              src={imageError ? 
+                "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08193382.png" : 
+                "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08193583.png"
+              } 
               alt="HP Promo" 
-              className="max-h-60 animate-pulse-subtle" 
+              className="max-h-60 animate-pulse-subtle"
+              loading="lazy"
+              onError={(e) => {
+                setImageError(true);
+                e.currentTarget.src = "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08193382.png";
+                e.currentTarget.onerror = null;
+              }}
             />
           </div>
         </div>

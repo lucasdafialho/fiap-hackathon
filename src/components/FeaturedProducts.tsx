@@ -10,6 +10,7 @@ export const FeaturedProducts = () => {
       price: "R$ 4.299,00",
       originalPrice: "R$ 4.899,00",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08499677.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08143001.png",
       badge: "Oferta",
       isNew: true
     },
@@ -19,6 +20,7 @@ export const FeaturedProducts = () => {
       price: "R$ 5.699,00",
       originalPrice: "R$ 6.199,00",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08497786.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06704949.png",
       badge: "Bestseller",
       isNew: false
     },
@@ -28,6 +30,7 @@ export const FeaturedProducts = () => {
       price: "R$ 999,00",
       originalPrice: "R$ 1.199,00",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06612696.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c06244969.png",
       badge: "Oferta",
       isNew: false
     },
@@ -37,6 +40,7 @@ export const FeaturedProducts = () => {
       price: "R$ 1.399,00",
       originalPrice: "R$ 1.599,00",
       image: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08002787.png",
+      fallbackImage: "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c07021025.png",
       badge: null,
       isNew: true
     }
@@ -66,7 +70,12 @@ export const FeaturedProducts = () => {
                 <img 
                   src={product.image} 
                   alt={product.name} 
-                  className="mx-auto h-48 object-contain mb-4 hover:scale-105 transition-transform duration-300" 
+                  className="mx-auto h-48 object-contain mb-4 hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = product.fallbackImage;
+                    e.currentTarget.onerror = null;
+                  }}
                 />
                 <h3 className="font-bold text-lg mb-1">{product.name}</h3>
                 <p className="text-gray-600 text-sm mb-3 h-12 overflow-hidden">{product.description}</p>

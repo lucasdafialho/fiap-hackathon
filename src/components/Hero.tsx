@@ -26,7 +26,12 @@ export const Hero = () => {
             <img 
               src="https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08499677.png" 
               alt="HP Laptop" 
-              className="w-full max-w-lg mx-auto animate-bounce-in"
+              className="w-full max-w-lg mx-auto animate-bounce-in object-contain"
+              loading="eager"
+              onError={(e) => {
+                e.currentTarget.src = "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08143001.png";
+                e.currentTarget.onerror = null;
+              }}
             />
           </div>
         </div>
